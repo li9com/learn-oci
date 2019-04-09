@@ -10,10 +10,11 @@ Vagrant.configure(2) do |config|
 end
 
 $script = <<SCRIPT
-  curl -Os /etc/yum.repos.d/vbatts-shadow-utils-newxidmap-epel-7.repo https://copr.fedorainfracloud.org/coprs/vbatts/shadow-utils-newxidmap/repo/epel-7/vbatts-shadow-utils-newxidmap-epel-7.repo
+  curl -so /etc/yum.repos.d/vbatts-shadow-utils-newxidmap-epel-7.repo https://copr.fedorainfracloud.org/coprs/vbatts/shadow-utils-newxidmap/repo/epel-7/vbatts-shadow-utils-newxidmap-epel-7.repo
   rpm --import https://copr-be.cloud.fedoraproject.org/results/vbatts/shadow-utils-newxidmap/pubkey.gpg
   yum install -y -q podman shadow-utils46-newxidmap
   echo user.max_user_namespaces = 10000 > /etc/sysctl.d/podman.conf
+  sysctl -p /etc/sysctl.d/podman.conf
   echo vagrant:110000:65536 > /etc/subuid
   echo vagrant:110000:65536 > /etc/subgid
   curl -Os http://download-ib01.fedoraproject.org/pub/fedora/linux/updates/28/Everything/x86_64/Packages/s/slirp4netns-0.3-0.alpha.2.git30883b5.fc28.x86_64.rpm
