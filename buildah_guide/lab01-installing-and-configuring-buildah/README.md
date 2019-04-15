@@ -8,7 +8,7 @@
 yum -y install buildah
 ```
 
-- Review the default configuration of local trust policy that doesn't perform any signature verification:
+- Review default configuration of local trust policy that doesn't perform any signature verification:
 
 ```
 cat /etc/containers/policy.json

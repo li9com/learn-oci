@@ -12,7 +12,7 @@ end
 $script = <<SCRIPT
   curl -so /etc/yum.repos.d/vbatts-shadow-utils-newxidmap-epel-7.repo https://copr.fedorainfracloud.org/coprs/vbatts/shadow-utils-newxidmap/repo/epel-7/vbatts-shadow-utils-newxidmap-epel-7.repo
   rpm --import https://copr-be.cloud.fedoraproject.org/results/vbatts/shadow-utils-newxidmap/pubkey.gpg
-  yum install -y -q podman shadow-utils46-newxidmap
+  yum install -y -q shadow-utils46-newxidmap
   echo user.max_user_namespaces = 10000 > /etc/sysctl.d/podman.conf
   sysctl -p /etc/sysctl.d/podman.conf
   echo vagrant:110000:65536 > /etc/subuid

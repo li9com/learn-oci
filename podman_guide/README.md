@@ -9,20 +9,19 @@ Labs are structured as follows:
 Lab    | Description
 ------ | -----------
 Lab 0  | Creating Lab environment (please see below in this document)
-Lab 1  | Podman installation
-Lab 2  | Podman basic configuration
-Lab 3  | Getting help
-Lab 4  | Manaing images
-Lab 5  | Managing containers
-Lab 6  | Using environment variables
-Lab 7  | Using persistent storage
-Lab 8  | Starting multicontainer applications
-Lab 9  | Starting private registry
-Lab 10 | Creating new images with podman commit
-Lab 11 | Creating a simple Dockerfile
-Lab 12 | Importing and exporting images
-Lab 13 | Advanced Dockerfile
-Lab 14 | Containerizing JBoss EAP
+Lab 1  | Installing and configuring podman
+Lab 2  | Podman CLI
+Lab 3  | Managing images
+Lab 4  | Managing containers
+Lab 5  | Using environment variables
+Lab 6  | Using persistent storage
+Lab 7  | Starting a multicontainer application
+Lab 8  | Starting private registry
+Lab 9  | Creating new images with podman commit
+Lab 10 | Creating a simple Dockerfile
+Lab 11 | Importing and exporting images
+Lab 12 | Advanced Dockerfile
+Lab 13 | Containerizing JBoss EAP
 
 
 ## Creating Lab environment
