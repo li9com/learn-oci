@@ -3,15 +3,15 @@ In this lab you will start 2-tier application - WordPress.  WordPress is a PHP a
 
 ## Starting a database
 
-- Start a new pod with a single mariadb container:
+- Start a new pod with a single mariadb container as **root**:
 
 ```
 # podman run -d --pod new:blog -p 8080:80 --name mariadb \
-> -e MYSQL_USER=wpuser \
-> -e MYSQL_PASSWORD=wppass \
-> -e MYSQL_DATABASE=wpdb \
-> -e MYSQL_ROOT_PASSWORD=secret \
-> mariadb
+-e MYSQL_USER=wpuser \
+-e MYSQL_PASSWORD=wppass \
+-e MYSQL_DATABASE=wpdb \
+-e MYSQL_ROOT_PASSWORD=secret \
+mariadb
 9e773d3c5f045e5604ca3b4858a0f3d2367dd8d22d9f0a4bee5bc87912ca5a94
 ```
 
@@ -64,4 +64,13 @@ Notice that the containers share the same net namespaces. This means that they c
 | wp_usermeta           |
 | wp_users              |
 +-----------------------+
+```
+
+- Delete the pod to clean-up:
+
+```
+# podman pod rm -f blog
+be0893de808f5233c7ffa12d388fe49f734fac4887763f66fa1ff5eb919ef53b
+
+# podman pod ps
 ```

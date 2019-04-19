@@ -11,7 +11,7 @@ sudo yum -y install podman
 - Optional: install additional usefull packages as follows:
 
 ```
-sudo yum -y install git vim jq
+sudo yum -y install git
 ```
 
 ## Configuration

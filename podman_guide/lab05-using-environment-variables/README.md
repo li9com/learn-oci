@@ -35,7 +35,7 @@ db0247b62420  docker.io/library/mariadb:latest  docker-entrypoint...  25 seconds
 - Check the container's logs:
 
 ```
-$ podman logs mariadb
+# podman logs mariadb
 Initializing database
 ...
 2019-04-15 13:35:38 0 [Note] mysqld: ready for connections.
@@ -66,7 +66,8 @@ MariaDB [(none)]> show databases;
 +--------------------+
 3 rows in set (0.002 sec)
 
-MariaDB [(none)]> Bye
+MariaDB [(none)]> exit
+**Bye**
 ```
 
 - Delete all containers
@@ -86,7 +87,7 @@ MYSQL_PASSWORD      | dbpassword
 MYSQL_DATABASE      | db1
 
 ```
-$ podman run -d --name mariadb \
+# podman run -d --name mariadb \
   -e MYSQL_ROOT_PASSWORD=secret \
   -e MYSQL_USER=dbuser \
   -e MYSQL_PASSWORD=dbpassword \

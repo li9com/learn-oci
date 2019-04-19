@@ -46,7 +46,7 @@ localhost/myhttpd   latest   2e4edb089d6e   13 seconds ago   266 MB
 - Start a new container from the image we have just downloaded:
 
 ```
-podman run -d --name httpd -p 8080:80 myhttpd
+# podman run -d --name httpd -p 8080:80 myhttpd
 ```
 
 - Make sure that the container works:
@@ -59,5 +59,5 @@ Custom Image
 - Delete all containers:
 
 ```
-podman rm -af
+# podman rm -af
 ```

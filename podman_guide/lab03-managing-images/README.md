@@ -22,25 +22,28 @@ You should be able to see a list of images that have **mariadb** in their names.
 - Check out the **podman-search** man page:
 
 ```
-man podman-search
+$ man podman-search
 ```
 
 - Try finding an Apache web server image:
 
 ```
-podman search httpd
+$ podman search httpd
 ```
 
 - Show 5 most popular mariadb images:
 
 ```
-podman search --limit 5 mariadb
+$ podman search --limit 5 mariadb
 ```
 
 - Look for official tomcat images:
 
 ```
-podman search -f is-official=true tomcat
+$ podman search -f is-official=true tomcat
+INDEX       NAME                       DESCRIPTION                                       STARS   OFFICIAL   AUTOMATED
+docker.io   docker.io/library/tomcat   Apache Tomcat is an open source implementati...   2347    [OK]       
+docker.io   docker.io/library/tomee    Apache TomEE is an all-Apache Java EE certif...   65      [OK]
 ```
 
 Notice that podman always looks for images in **registry.lab.example.com** registry, as per **/etc/containers/registries.conf** unless you prepend the image name with registry and repository address.
@@ -50,19 +53,19 @@ Notice that podman always looks for images in **registry.lab.example.com** regis
 - Check out the **podman-pull** man page:
 
 ```
-man podman-pull
+$ man podman-pull
 ```
 
 - Download an Apache image
 
 ```
-podman pull httpd
+$ podman pull httpd
 ```
 
 - Make sure that image has been downloaded successfully
 
 ```
-[vagrant@node1 ~]$ podman images
+$ podman images
 REPOSITORY                TAG      IMAGE ID       CREATED       SIZE
 docker.io/library/httpd   latest   d4a07e6ce470   12 days ago   137 MB
 ```
@@ -70,13 +73,13 @@ docker.io/library/httpd   latest   d4a07e6ce470   12 days ago   137 MB
 - Download Apache image with tag 2.2
 
 ```
-podman pull httpd:2.2
+$ podman pull httpd:2.2
 ```
 
 - Make sure that both images do exist locally:
 
 ```
-[vagrant@node1 ~]$ podman images
+$ podman images
 REPOSITORY                TAG      IMAGE ID       CREATED         SIZE
 docker.io/library/httpd   latest   d4a07e6ce470   12 days ago     137 MB
 docker.io/library/httpd   2.2      e06c3dbbfe23   15 months ago   180 MB
@@ -87,13 +90,13 @@ docker.io/library/httpd   2.2      e06c3dbbfe23   15 months ago   180 MB
 - Check the **podman-images** man page
 
 ```
-man podman-images
+$ man podman-images
 ```
 
 - Display only image IDs
 
 ```
-[vagrant@node1 ~]$ podman images -aq
+$ podman images -aq
 d4a07e6ce470
 e06c3dbbfe23
 ```
@@ -119,13 +122,13 @@ Like Docker, podman uses [Go templates](https://golang.org/pkg/text/template/), 
 - Check out the **podman-tag** man page:
 
 ```
-man docker-tag
+$ man docker-tag
 ```
 
 - Tag the image "httpd" as "apache":
 
 ```
-podman tag httpd apache
+$ podman tag httpd apache
 ```
 
 - Make sure that **podman images** shows the new tag:
@@ -143,7 +146,7 @@ Note, that **IMAGE ID** is identical for *apache:latest* and *httpd:latest* cont
 - Tag the httpd image with tag 2.2 as apache:v2.2:
 
 ```
-podman tag httpd:2.2 apache:v2.2
+$ podman tag httpd:2.2 apache:v2.2
 $ podman images
 REPOSITORY                TAG      IMAGE ID       CREATED         SIZE
 localhost/apache          latest   d4a07e6ce470   12 days ago     137 MB
@@ -157,7 +160,7 @@ localhost/apache          v2.2     e06c3dbbfe23   15 months ago   180 MB
 - Check the **podman-history** man page:
 
 ```
-man podman-history
+$ man podman-history
 ```
 
 - Display the history of httpd image:
@@ -185,8 +188,8 @@ d4a07e6ce470   12 days ago   /bin/sh -c #(nop) CMD ["httpd-foreground"]      0B
 - Let's view the history of *mariadb* and *centos:7* images:
 
 ```
-podman history mariadb
-podman history centos:7
+$ podman history mariadb
+$ podman history centos:7
 ```
 
 Note! You may need to pull the images first.
@@ -194,20 +197,20 @@ Note! You may need to pull the images first.
 - Check out the **podman-inspect** man page:
 
 ```
-man podman-inspect
+$ man podman-inspect
 ```
 
 - Inspect the httpd image:
 
 ```
-podman inspect httpd
+$ podman inspect httpd
 
 ```
 
 For better clarity, pipe the JSON output to python JSON parser module to get it formatted:
 
 ```
-podman inspect httpd | python -m json.tool
+$ podman inspect httpd | python -m json.tool
 ```
 
 - Display environment variables for the httpd image:
@@ -223,7 +226,7 @@ $ podman inspect -f {{.ContainerConfig.Env}} httpd
 - Check the **podman-rmi** man page
 
 ```
-man podman-rmi
+$ man podman-rmi
 ```
 
 - Display local images
@@ -239,7 +242,7 @@ docker.io/library/centos    7        9f38484d220f   4 weeks ago     209 MB
 **localhost/apache            v2.2     e06c3dbbfe23   15 months ago   180 MB**
 ```
 
-Make sure that image IDs are the same for **httpd:2.2* and *apache:v2.2* images
+Make sure that image IDs are the same for **httpd:2.2** and **apache:v2.2** images
 
 - Untag the image apache:v2.2:
 
@@ -266,7 +269,7 @@ Note that the output of **untag** command mentioned *Untagged*. The actual consu
 $ podman rmi httpd:2.2
 e06c3dbbfe239c6fca50b6ab6935b3122930fa2eea2136979e5b46ad77ecb685
 
-[vagrant@node1 ~]$ podman images
+$ podman images
 REPOSITORY                  TAG      IMAGE ID       CREATED       SIZE
 docker.io/library/mariadb   latest   97df12fa9319   12 days ago   375 MB
 docker.io/library/httpd     latest   d4a07e6ce470   12 days ago   137 MB

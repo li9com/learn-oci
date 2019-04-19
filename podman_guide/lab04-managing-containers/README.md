@@ -15,19 +15,19 @@ Included are:
 - Check out the **podman-run** man page:
 
 ```
-man podman-run
+$ man podman-run
 ```
 
 - Check out the built-in help:
 
 ```
-podman run --help
+$ podman run --help
 ```
 
 or
 
 ```
-podman h run
+$ podman h run
 ```
 
 - Start an httpd container with no options:
@@ -99,8 +99,8 @@ Notice that container has been deleted automatically, once stopped. That is the 
 - Check the man pages for **podman-stop** and **podman-start**:
 
 ```
-man podman-stop
-man podman-start
+$ man podman-stop
+$ man podman-start
 ```
 
 - Check the running containers
@@ -121,7 +121,7 @@ $ podman stop 97b1fc6febd1
 Note! It's up to you whether to use container ID or container name. We could stop the container as follows instead:
 
 ```
-podman stop compassionate_thompson
+$ podman stop compassionate_thompson
 ```
 
 - Make sure that container was stoped
@@ -179,7 +179,7 @@ Note! We already used `podman ps` to list running and stopped containers. In thi
 - Check the **podman-ps** man page:
 
 ```
-man podman-ps
+$ man podman-ps
 ```
 
 - Display running and stopped containers, respectivelly:
@@ -233,7 +233,7 @@ $ podman ps --format "{{.ID}} {{.Image}}"
 - Check out the **podman-inspect** man page:
 
 ```
-man podman-inspect
+$ man podman-inspect
 ```
 
 - Start a new container named *myhttpd* as **root**:
@@ -261,6 +261,8 @@ man podman-inspect
 ```
 # curl $(podman inspect --format '{{.NetworkSettings.IPAddress}}' myhttpd)
 <html><body><h1>It works!</h1></body></html>
+
+# logout
 ```
 
 This is useful in scripts.
@@ -273,7 +275,7 @@ Note! We started a httpd container which is Apache web server. It is expected th
 - Check out the **podman-rm** man page:
 
 ```
-man podman-rm
+$ man podman-rm
 ```
 
 Note! By default, the `podman rm` command deletes only stopped containers. If you need to delete a running container, option *-f* (or *--force*) is required.
@@ -298,10 +300,9 @@ CONTAINER ID  IMAGE                           COMMAND           CREATED         
 97b1fc6febd1  docker.io/library/httpd:latest  httpd-foreground  36 minutes ago  Up 25 minutes ago         compassionate_thompson
 ```
 
-- Try to delete a running container:
+- Try to delete a running container as **root**:
 
 ```
-$ sudo -i
 # podman ps
 CONTAINER ID  IMAGE                           COMMAND           CREATED        STATUS            PORTS  NAMES
 15c80b897d23  docker.io/library/httpd:latest  httpd-foreground  6 minutes ago  Up 6 minutes ago         myhttpd
@@ -346,7 +347,7 @@ By default, containers use an internal network which is not accessible from outs
 - Check out the **podman-run** man page. Look for *-p*, or *--publish* option:
 
 ```
-man podman-run
+$ man podman-run
 ```
 
 - Check out the built-in documentation:
@@ -384,7 +385,7 @@ f97392e51038  docker.io/library/httpd:latest  httpd-foreground  6 seconds ago  U
 
 Note! Application is accessible from the Docker Node via both loopback and external IPs.
 
-- Try to start a new httpd container and bind it to the same Docker node port.
+- Try to start a new httpd container as **root** and bind it to the same Docker node port:
 
 ```
 # podman run -d --name new_httpd -p 8080:80 httpd
@@ -410,11 +411,12 @@ c2064d5833255c3086561db288cea9aad258053d2a7d537b9438a6015af62dc7
 f97392e51038cf0ec3e589eb5f2d590318e7fb9bf398d5783d1196cd69145b82
 ```
 
-- Start a new Jenkins container and bind it to port 8080 of the Docker node:
+- Start a new Jenkins container as **root** and bind it to port 8080 of the Docker node:
 
 ```
 # podman run -d --name jenkins -p 8080:8080 jenkins
 ...
+
 # podman ps
 CONTAINER ID  IMAGE                             COMMAND               CREATED         STATUS             PORTS                   NAMES
 66cccb48da3e  docker.io/library/jenkins:latest  /bin/tini -- /usr...  32 seconds ago  Up 32 seconds ago  0.0.0.0:8080->8080/tcp  jenkins
@@ -444,7 +446,7 @@ Note! You should see the default Jenkins configration page named "Getting Starte
 - Once you are done, delete all containers:
 
 ```
-podman rm -af
+# podman rm -af
 ```
 
 ## Executing custom commands inside a conainer
@@ -452,19 +454,19 @@ podman rm -af
 You may override the default command (application process) started, once a container is run. This is achieved by passing a *COMMAND* argument, as shown below:
 
 ```
-podman run <IMAGE> <COMMAND>
+# podman run <IMAGE> <COMMAND>
 ```
 
 You may also connect to a running container's shell using `podman exec`:
 
 ```
-podman exec -it <IMAGE> <COMMAND>
+# podman exec -it <IMAGE> <COMMAND>
 ```
 
 More information is available in the man page
 
 ```
-man podman-exec
+# man podman-exec
 ```
 
 - Start a httpd container with */bin/sh*:
@@ -487,6 +489,7 @@ drwxr-sr-x. 2 root www-data    6 Apr  2 23:38 logs
 drwxr-sr-x. 2 root www-data 8192 Apr  2 23:38 modules
 # whoami
 root
+# exit
 
 $ podman ps -a
 CONTAINER ID  IMAGE                           COMMAND  CREATED             STATUS                     PORTS  NAMES

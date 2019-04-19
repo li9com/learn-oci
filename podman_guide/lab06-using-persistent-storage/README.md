@@ -4,10 +4,10 @@ In this lab, you will start containers on a persistent storage. Due to limitatio
 ## Apache service
 In this chapter, we will be using another Apache image, which is OpenShift-ready. The image name is *httpd-24-centos7*.
 
-- Pull *docker.io/centos/httpd-24-centos7* image:
+- Pull *docker.io/centos/httpd-24-centos7* image as **root**:
 
 ```
-podman pull docker.io/centos/httpd-24-centos7
+# podman pull docker.io/centos/httpd-24-centos7
 ```
 
 - Start an httpd container to make sure that it works:
@@ -36,72 +36,7 @@ CONTAINER ID  IMAGE                                     COMMAND               CR
 # podman inspect httpd-24-centos7 | python -m json.tool
 [
     {
-        "Annotations": {},
-        "Architecture": "amd64",
-        "Author": "",
-        "Comment": "",
-        "ContainerConfig": {
-            "Cmd": [
-                "/usr/bin/run-httpd"
-            ],
-            "Entrypoint": [
-                "container-entrypoint"
-            ],
-            "Env": [
-                "PATH=/opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-                "SUMMARY=Platform for running Apache httpd 2.4 or building httpd-based application",
-                "DESCRIPTION=Apache httpd 2.4 available as container, is a powerful, efficient, and extensible web server. Apache supports a variety of features, many implemented as compiled modules which extend the core functionality. These can range from server-side programming language support to authentication schemes. Virtual hosting allows one Apache installation to serve many different Web sites.",
-                "STI_SCRIPTS_URL=image:///usr/libexec/s2i",
-                "STI_SCRIPTS_PATH=/usr/libexec/s2i",
-                "APP_ROOT=/opt/app-root",
-                "HOME=/opt/app-root/src",
-                "PLATFORM=el7",
-                "BASH_ENV=/opt/app-root/scl_enable",
-                "ENV=/opt/app-root/scl_enable",
-                "PROMPT_COMMAND=. /opt/app-root/scl_enable",
-                "HTTPD_VERSION=2.4",
-                "HTTPD_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/httpd/",
-                "HTTPD_APP_ROOT=/opt/app-root",
-                "HTTPD_CONFIGURATION_PATH=/opt/app-root/etc/httpd.d",
-                "HTTPD_MAIN_CONF_PATH=/etc/httpd/conf",
-                "HTTPD_MAIN_CONF_MODULES_D_PATH=/etc/httpd/conf.modules.d",
-                "HTTPD_MAIN_CONF_D_PATH=/etc/httpd/conf.d",
-                "HTTPD_VAR_RUN=/var/run/httpd",
-                "HTTPD_DATA_PATH=/var/www",
-                "HTTPD_DATA_ORIG_PATH=/opt/rh/httpd24/root/var/www",
-                "HTTPD_LOG_PATH=/var/log/httpd24",
-                "HTTPD_SCL=httpd24"
-            ],
-            "ExposedPorts": {
-                "8080/tcp": {},
-                "8443/tcp": {}
-            },
-            "Labels": {
-                "com.redhat.component": "httpd24-container",
-                "description": "Apache httpd 2.4 available as container, is a powerful, efficient, and extensible web server. Apache supports a variety of features, many implemented as compiled modules which extend the core functionality. These can range from server-side programming language support to authentication schemes. Virtual hosting allows one Apache installation to serve many different Web sites.",
-                "io.k8s.description": "Apache httpd 2.4 available as container, is a powerful, efficient, and extensible web server. Apache supports a variety of features, many implemented as compiled modules which extend the core functionality. These can range from server-side programming language support to authentication schemes. Virtual hosting allows one Apache installation to serve many different Web sites.",
-                "io.k8s.display-name": "Apache httpd 2.4",
-                "io.openshift.builder-version": "\"576489e\"",
-                "io.openshift.expose-services": "8080:http,8443:https",
-                "io.openshift.s2i.scripts-url": "image:///usr/libexec/s2i",
-                "io.openshift.tags": "builder,httpd,httpd24",
-                "io.s2i.scripts-url": "image:///usr/libexec/s2i",
-                "maintainer": "SoftwareCollections.org <sclorg@redhat.com>",
-                "name": "centos/httpd-24-centos7",
-                "org.label-schema.build-date": "20190305",
-                "org.label-schema.license": "GPLv2",
-                "org.label-schema.name": "CentOS Base Image",
-                "org.label-schema.schema-version": "1.0",
-                "org.label-schema.vendor": "CentOS",
-                "summary": "Platform for running Apache httpd 2.4 or building httpd-based application",
-                "usage": "s2i build https://github.com/sclorg/httpd-container.git --context-dir=examples/sample-test-app/ centos/httpd-24-centos7 sample-server",
-                "version": "2.4"
-            },
-            "User": "1001",
-            "WorkingDir": "/opt/app-root/src"
-        },
-        "Created": "2019-04-03T07:25:09.936460149Z",
-        "Digest": "sha256:d1256b39182b0ac5290c946dc44fc11055524683113a1b5e3a55d83044a185cb",
+        ...
         "GraphDriver": {
             "Data": {
                 "LowerDir": "/var/lib/containers/storage/overlay/a6267d7382817e799a06743bbd1259db083159bbbb3c49b1d3bdb111038490fc/diff:/var/lib/containers/storage/overlay/ff054df09fb765e5f36ca6cc6f3a5815ef9ec02aaf7df17c6706152596702b6f/diff:/var/lib/containers/storage/overlay/829006c2336096d6ec468ffa4114b566e8cf7fb97df272386912958c3ca646be/diff:/var/lib/containers/storage/overlay/0018c6851148ac05d2fd54c49aa3e8f7385399ac2eb0853f42a918a5aa34b473/diff:/var/lib/containers/storage/overlay/12b70e9b19a1c0854b3defbd640f00002138da785c4e7e1fba4bf6dcd72bb9db/diff:/var/lib/containers/storage/overlay/4ec3102a0a6b8b2a7f605905219d42b75c20b40d219b20eae17a64c146eac308/diff:/var/lib/containers/storage/overlay/d69483a6face4499acb974449d1303591fcbb5cdce5420f36f8a6607bda11854/diff",
@@ -302,11 +237,11 @@ Note! The *HTTPD_DATA_PATH* variable points to */var/www* directory. It looks li
 - Create a persistent storage for our Apache container:
 
 ```
-$ mkdir -p /data/apache
-$ chcon -t container_file_t /data/apache
-$ chown 1001:0 /data/apache
-$ chmod g+s /data/apache
-$ echo "Custom page" > /data/apache/index.html
+# mkdir -p /data/apache
+# chcon -t container_file_t /data/apache
+# chown 1001:0 /data/apache
+# chmod g+s /data/apache
+# echo "Custom page" > /data/apache/index.html
 ```
 
 Note! We have created a custom directory with *index.html* file in it. We will mount this directory into the new apache containers on start.
@@ -382,6 +317,7 @@ a9855003d3b771b4d5e7de5c2a1910378bca32a360dca7a91acd236c249be072
 - Check location of MariaDB data volume:
 
 ```
+# podman pull mariadb
 # podman inspect --format='{{ .ContainerConfig.Volumes }}' mariadb
 map[/var/lib/mysql:{}]
 ```
@@ -391,14 +327,14 @@ Note! It looks like /var/lib/mysql should be used for the persistent storage.
 - Configure mariadb persistent storage:
 
 ```
-mkdir -p /data/mysql
-chcon -t container_file_t /data/mysql
+# mkdir -p /data/mysql
+# chcon -t container_file_t /data/mysql
 ```
 
 - Start a mariadb container:
 
 ```
-$ podman run -d --name mariadb \
+# podman run -d --name mariadb \
    -v /data/mysql:/var/lib/mysql \
    -e MYSQL_ROOT_PASSWORD=secret \
    -e MYSQL_USER=dbuser \
@@ -478,4 +414,10 @@ b128b653ab25  docker.io/library/mariadb:latest  docker-entrypoint...  6 seconds 
 ```
 # podman rm -af
 b128b653ab25b62d61334f8e3fcd232e1f4e24e0dd43932923369062752f9acb
+```
+
+- Delete the MAriaDB data directory:
+
+```
+# rm -rf /data/mysql
 ```
